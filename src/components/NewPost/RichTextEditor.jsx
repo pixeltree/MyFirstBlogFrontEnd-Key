@@ -17,7 +17,6 @@ const RichTextEditor = ({ formSubmitHandler, postSlug }) => {
     postData.append("slug", slug)
     postData.append("body", body)
 
-
     formSubmitHandler(postData)
       .then((_) => {
         router.push(`/posts`)
