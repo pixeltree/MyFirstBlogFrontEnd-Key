@@ -26,6 +26,27 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
+### Authentication
+
+#### Auth0 project setup
+To enable authentication, create an account with [Auth0](https://auth0.com/). Once you've logged in:
+1. Create a single page app using React
+2. Modify the Login box if you wish but default values are fine
+3. Ensure login works within the sandbox
+
+Pretty nifty, right? Next, we will configure Auth0 to work with the app
+
+4. Navigate to the settings tab of your applications dashboard within Auth0
+5. Fill in your `.env.local` file with the tokens found on the settings page
+   * `NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL` should be set to the `Domain` value with `https://` added to the beginning
+6. Set the `Token Endpoint Authentication Method` to `None`
+7. Add `http://localhost:3000` to the following settings:
+   1. `Allowed Callback URLs` 
+   2. `Allowed Logout URLs`
+   3. `Allowed Web Origins`
+   4. `Allowed Origins (CORS)`
+8. Test by starting up the server using `yarn dev` or `npm run dev` and logging in
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -41,3 +62,4 @@ To learn more about the technologies used in this site, see the following resour
 - [Next.js](https://nextjs.org/docs) - the official Next.js documentation
 - [Headless UI](https://headlessui.dev) - the official Headless UI documentation
 - [MDX](https://mdxjs.com) - the MDX documentation
+- [Auth0](https://auth0.com/docs/) - the Auth0 documentation
