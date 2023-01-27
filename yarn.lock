@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@auth0/auth0-react@^1.12.1":
+"@auth0/auth0-react@^1.12.0":
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/@auth0/auth0-react/-/auth0-react-1.12.1.tgz#3a469518828137339c635434ab953e206e798fe8"
   integrity sha512-8+ecK/4rE0AGsxLW2IDcr1oPbT55tuE6cQEzEIOkQjB6QGQxxWMzQy0D4nMKw3JUAc7nYcFVOABNFNbc471n9Q==
