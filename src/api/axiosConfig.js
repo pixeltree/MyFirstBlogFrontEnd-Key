@@ -3,11 +3,23 @@ import { isHyperlink } from '@/lib/isHyperlink'
 
 const BASE_URL = process.env.DOTNET_SERVER_URL
 
+export const returnInput = input => input
+
+export const rejectError = (error) => {
+  console.error(error)
+  return Promise.reject(error)
+}
+
 const AXIOS_BASE = axios.create({
-    baseURL: BASE_URL,
-    timeout: 3000,
+    baseURL: BASE_URL
   })
 
-const JSON_CLIENT = isHyperlink(BASE_URL) ? AXIOS_BASE : false
+AXIOS_BASE.interceptors.response.use(
+  returnInput,
+  rejectError,
+  { synchronous: true }
+)
 
-export default JSON_CLIENT
+const API = isHyperlink(BASE_URL) ? AXIOS_BASE : false
+
+export default API
