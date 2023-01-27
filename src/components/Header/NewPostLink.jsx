@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react"
 import Link from "next/link"
 
-const AdminLink = () => {
+const NewPostLink = () => {
   const { isAuthenticated } = useAuth0()
 
   return (
@@ -18,4 +18,4 @@ const AdminLink = () => {
   )
 }
 
-export default AdminLink
+export default NewPostLink

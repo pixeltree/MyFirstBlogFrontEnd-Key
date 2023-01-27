@@ -4,17 +4,12 @@ import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { formatDate } from '@/lib/formatDate'
 import { getPosts } from "@/api/postsApi"
-import { Button } from "@/components/Button"
-import { useAuth0 } from "@auth0/auth0-react"
-
-import DeleteButton from "@/components/Admin/DeleteButton"
 
 function Post({ post }) {
-  const { isAuthenticated } = useAuth0()
   const date = new Date(post.createdDate)
 
   return (
-    <article className="md:grid md:grid-cols-5 md:items-baseline">
+    <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
         <Card.Title href={`/posts/${post.slug}`}>
           {post.title}
@@ -37,12 +32,6 @@ function Post({ post }) {
       >
         {formatDate(date)}
       </Card.Eyebrow>
-      {isAuthenticated && (
-        <div className='flex flex-col space-y-2 items-center'>
-          <div className='px-1'><Button href={`/admin/edit?post=${post.slug}`}>Edit Post</Button></div>
-          <DeleteButton slug={post.slug} />
-        </div>
-      )}
     </article>
   )
 }

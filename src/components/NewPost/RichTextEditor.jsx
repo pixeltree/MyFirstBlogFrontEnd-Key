@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Container } from "@/components/Container"
 import { useRouter } from "next/router"
-import { getValues } from "@/components/helpers/getValues";
 
-const RichTextEditor = ({ formSubmitHandler, postSlug }) => {
+const RichTextEditor = ({ formSubmitHandler }) => {
   const router = useRouter()
   const [title, setTitle] = useState("")
   const [slug, setSlug] = useState("")
@@ -25,10 +24,6 @@ const RichTextEditor = ({ formSubmitHandler, postSlug }) => {
       alert(`${e.request.responseText}, please try again`)
     })
   }
-
-  useEffect(() => {
-    getValues(postSlug, setTitle, setSlug, setBody)
-  },[])
 
   const changeHandlerFactory = (setState) => {
     return (event) => {
