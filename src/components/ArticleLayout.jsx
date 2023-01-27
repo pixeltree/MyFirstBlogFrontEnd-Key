@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
+import { Button } from "@/components/Button";
+import { useAuth0 } from "@auth0/auth0-react"
 
 function ArrowLeftIcon(props) {
   return (
@@ -18,13 +20,15 @@ function ArrowLeftIcon(props) {
   )
 }
 
-export function ArticleLayout({
-  children,
-  meta,
-  isRssFeed = false,
-  previousPathname,
-}) {
+export function ArticleLayout(
+  { children,
+    meta,
+    isRssFeed = false,
+    previousPathname,
+  }) {
+  const { isAuthenticated } = useAuth0()
   let router = useRouter()
+  const { slug } = router.query
 
   if (isRssFeed) {
     return children
@@ -51,9 +55,17 @@ export function ArticleLayout({
             )}
             <article>
               <header className="flex flex-col">
-                <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">
-                  {meta.title}
-                </h1>
+                <div className='flex items-baseline justify-between'>
+                  <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">
+                    {meta.title}
+                  </h1>
+                  {isAuthenticated && (
+                    <div className='flex items-center'>
+                      <div className='px-1'><Button href="/admin/post">New Post</Button></div>
+                      <div><Button href={`/admin/edit?post=${slug}`}>Edit Post</Button></div>
+                    </div>
+                  )}
+                </div>
                 <time
                   dateTime={meta.date}
                   className="order-first flex items-center text-base text-zinc-400"
