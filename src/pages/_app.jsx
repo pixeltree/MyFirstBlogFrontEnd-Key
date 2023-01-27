@@ -31,9 +31,7 @@ export default function App({ Component, pageProps, router }) {
         <Auth0Provider
           domain={process.env.NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL}
           clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}
-          authorizationParams={{
-            redirect_uri: process.env.NEXT_PUBLIC_AUTH0_BASE_URL
-          }}
+          redirectUri={process.env.NEXT_PUBLIC_AUTH0_BASE_URL}
         >
           <Header />
           <main>
